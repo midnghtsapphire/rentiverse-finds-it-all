@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Sparkles, MapPin } from "lucide-react"; // Added MapPin
-import { useToast } from "@/components/ui/use-toast";
+import { Search, Sparkles, MapPin } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface HeroProps {
   onSearch: (term: string) => void;

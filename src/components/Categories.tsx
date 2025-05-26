@@ -1,5 +1,5 @@
 import { Sparkles } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 // Define category images
 const categoryImages = {
