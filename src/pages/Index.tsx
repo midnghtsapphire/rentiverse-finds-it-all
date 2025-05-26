@@ -3,7 +3,8 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Categories from "@/components/Categories";
-import FeaturedListings from "@/components/FeaturedListings";
+// import FeaturedListings from "@/components/FeaturedListings"; // Remove old component
+import SupabaseFeaturedListings from "@/components/SupabaseFeaturedListings"; // Add new component
 import HowItWorks from "@/components/HowItWorks";
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
@@ -25,7 +26,8 @@ const Index = () => {
       <main>
         <Hero onSearch={handleSearch} />
         <Categories />
-        <FeaturedListings searchTerm={searchTerm} onClearSearch={clearSearch} />
+        {/* Replace FeaturedListings with SupabaseFeaturedListings */}
+        <SupabaseFeaturedListings searchTerm={searchTerm} onClearSearch={clearSearch} />
         <HowItWorks />
         <CallToAction />
       </main>
