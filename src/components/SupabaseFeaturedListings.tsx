@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, Inbox, Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Listing {
   id: string;
@@ -22,32 +23,43 @@ interface SupabaseFeaturedListingsProps {
 }
 
 const fetchListings = async (searchTerm: string): Promise<Listing[]> => {
-  let query = supabase.from("listings").select("id, title, description, category, location, price_per_day, image_url");
+  try {
+    let query = supabase.from("listings").select("id, title, description, category, location, price_per_day, image_url");
 
-  if (searchTerm) {
-    // Basic search: checking title, category, and location.
-    // For more advanced search, consider full-text search capabilities of PostgreSQL.
-    query = query.or(
-      `title.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%,location.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%`
-    );
+    if (searchTerm) {
+      // Basic search: checking title, category, and location.
+      // For more advanced search, consider full-text search capabilities of PostgreSQL.
+      query = query.or(
+        `title.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%,location.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%`
+      );
+    }
+
+    query = query.order("created_at", { ascending: false }).limit(8); // Show latest 8 listings
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error("Error fetching listings:", error);
+      throw new Error(error.message);
+    }
+    return data || [];
+  } catch (error) {
+    console.error("Error in fetchListings:", error);
+    return [];
   }
-
-  query = query.order("created_at", { ascending: false }).limit(8); // Show latest 8 listings
-
-  const { data, error } = await query;
-
-  if (error) {
-    console.error("Error fetching listings:", error);
-    throw new Error(error.message);
-  }
-  return data || [];
 };
 
 const SupabaseFeaturedListings = ({ searchTerm, onClearSearch }: SupabaseFeaturedListingsProps) => {
+  const navigate = useNavigate();
+  
   const { data: listings, isLoading, error, refetch } = useQuery<Listing[], Error>({
     queryKey: ["listings", searchTerm],
     queryFn: () => fetchListings(searchTerm),
   });
+
+  const handleViewDetails = (listingId: string) => {
+    navigate(`/listing/${listingId}`);
+  };
 
   if (isLoading) {
     return (
@@ -124,7 +136,9 @@ const SupabaseFeaturedListings = ({ searchTerm, onClearSearch }: SupabaseFeature
               <p className="text-lg font-bold text-primary">
                 ${listing.price_per_day} <span className="text-sm font-normal text-gray-500">/ day</span>
               </p>
-              <Button size="sm">View Details</Button>
+              <Button size="sm" onClick={() => handleViewDetails(listing.id)}>
+                View Details
+              </Button>
             </CardFooter>
           </Card>
         ))}
