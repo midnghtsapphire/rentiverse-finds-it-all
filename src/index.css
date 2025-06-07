@@ -34,6 +34,20 @@
     --ring: 252 82% 74%;
 
     --radius: 0.75rem;
+
+    /* Category colors */
+    --fashion: #e91e63;
+    --pets: #4caf50;
+    --furniture: #795548;
+    --equipment: #ff9800;
+    --events: #9c27b0;
+    --media: #2196f3;
+    --lifestyle: #00bcd4;
+    --unique: #673ab7;
+    --tools: #f44336;
+    --automotive: #607d8b;
+    --sports: #8bc34a;
+    --kitchen: #ff5722;
   }
 
   .dark {

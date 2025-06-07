@@ -1,3 +1,4 @@
+
 import { Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -10,7 +11,11 @@ const categoryImages = {
   events: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format",
   media: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=200&auto=format",
   lifestyle: "https://images.unsplash.com/photo-1560807707-8cc77767d783?q=80&w=200&auto=format",
-  unique: "https://images.unsplash.com/photo-1554941068-a252680d25d3?q=80&w=200&auto=format"
+  unique: "https://images.unsplash.com/photo-1554941068-a252680d25d3?q=80&w=200&auto=format",
+  tools: "https://images.unsplash.com/photo-1609899252456-6db1eb0aecc5?q=80&w=200&auto=format",
+  automotive: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=200&auto=format",
+  sports: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=200&auto=format",
+  kitchen: "https://images.unsplash.com/photo-1556909114-c71d2e2c4d37?q=80&w=200&auto=format"
 };
 
 const categoryGroups = [
@@ -22,6 +27,16 @@ const categoryGroups = [
       { name: "Purses", image: categoryImages.fashion },
       { name: "Glasses", image: categoryImages.fashion },
       { name: "Jewelry", image: categoryImages.fashion },
+    ]
+  },
+  {
+    name: "Tools & Hardware",
+    color: "tools",
+    items: [
+      { name: "Air Compressors", image: categoryImages.tools },
+      { name: "Nail Guns", image: categoryImages.tools },
+      { name: "Power Drills", image: categoryImages.tools },
+      { name: "Pressure Washers", image: categoryImages.tools },
     ]
   },
   {
@@ -52,6 +67,36 @@ const categoryGroups = [
       { name: "Trailers", image: categoryImages.equipment },
       { name: "Augers", image: categoryImages.equipment },
       { name: "Concrete Mixers", image: categoryImages.equipment },
+    ]
+  },
+  {
+    name: "Sports & Recreation",
+    color: "sports",
+    items: [
+      { name: "Kayaks", image: categoryImages.sports },
+      { name: "Bikes", image: categoryImages.sports },
+      { name: "Ski Equipment", image: categoryImages.sports },
+      { name: "Camping Gear", image: categoryImages.sports },
+    ]
+  },
+  {
+    name: "Automotive",
+    color: "automotive",
+    items: [
+      { name: "Car Jacks", image: categoryImages.automotive },
+      { name: "Diagnostic Tools", image: categoryImages.automotive },
+      { name: "Car Wash Equipment", image: categoryImages.automotive },
+      { name: "Tire Changers", image: categoryImages.automotive },
+    ]
+  },
+  {
+    name: "Kitchen Equipment",
+    color: "kitchen",
+    items: [
+      { name: "Stand Mixers", image: categoryImages.kitchen },
+      { name: "Food Processors", image: categoryImages.kitchen },
+      { name: "Espresso Machines", image: categoryImages.kitchen },
+      { name: "Catering Equipment", image: categoryImages.kitchen },
     ]
   },
   {
