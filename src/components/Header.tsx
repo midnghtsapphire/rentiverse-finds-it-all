@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -83,7 +84,7 @@ const Header = ({ onSearch }: HeaderProps) => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
@@ -120,23 +121,23 @@ const Header = ({ onSearch }: HeaderProps) => {
             </div>
             <Input 
               type="text" 
-              className="pl-9 pr-4 py-2 text-sm h-9" 
+              className="pl-9 pr-4 py-2 text-sm h-9 border-gray-300" 
               placeholder="Enter ZIP code or city" 
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
-            <Button size="icon" variant="ghost" type="submit" className="absolute right-1 h-7 w-7" aria-label="Search rentals">
+            <Button size="icon" variant="ghost" type="submit" className="absolute right-1 h-7 w-7 hover:bg-purple-100" aria-label="Search rentals">
               <Search size={16} />
             </Button>
           </form>
-          <Button variant="ghost" size="sm" onClick={handleUseMyLocation}>
+          <Button variant="ghost" size="sm" onClick={handleUseMyLocation} className="hover:bg-purple-100">
             <MapPin size={16} className="mr-1.5" />
             Use My Location
           </Button>
         </div>
         
         <div className="hidden md:flex items-center space-x-2">
-          <Button variant="outline" size="sm"
+          <Button variant="outline" size="sm" className="border-purple-200 hover:bg-purple-50"
             onClick={() => {
               toast({
                 title: "Sign In",
@@ -146,7 +147,7 @@ const Header = ({ onSearch }: HeaderProps) => {
           >
             Sign In
           </Button>
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white" size="sm"
+          <Button className="bg-purple-500 hover:bg-purple-600 text-white" size="sm"
             onClick={() => {
               toast({
                 title: "List Your Rental",
@@ -161,7 +162,7 @@ const Header = ({ onSearch }: HeaderProps) => {
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hover:bg-purple-100">
                 <Menu size={24} />
                 <span className="sr-only">Open menu</span>
               </Button>
@@ -169,7 +170,7 @@ const Header = ({ onSearch }: HeaderProps) => {
             <SheetContent side="right" className="w-[280px] sm:w-[320px]">
               <nav className="flex flex-col space-y-4 mt-8">
                 <SheetClose asChild>
-                  <Button variant="outline" className="w-full justify-start"
+                  <Button variant="outline" className="w-full justify-start border-purple-200 hover:bg-purple-50"
                     onClick={() => {
                       toast({
                         title: "Sign In",
@@ -181,7 +182,7 @@ const Header = ({ onSearch }: HeaderProps) => {
                   </Button>
                 </SheetClose>
                 <SheetClose asChild>
-                  <Button className="bg-blue-500 hover:bg-blue-600 text-white w-full justify-start" 
+                  <Button className="bg-purple-500 hover:bg-purple-600 text-white w-full justify-start" 
                     onClick={() => {
                       toast({
                         title: "List Your Rental",
@@ -224,18 +225,18 @@ const Header = ({ onSearch }: HeaderProps) => {
               </div>
               <Input 
                 type="text" 
-                className="pl-10 pr-4 py-2" 
+                className="pl-10 pr-4 py-2 border-gray-300" 
                 placeholder="Enter ZIP code or city" 
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
-              <Button size="sm" type="submit" className="absolute right-1 bg-blue-500 hover:bg-blue-600 text-white" aria-label="Search rentals">
+              <Button size="sm" type="submit" className="absolute right-1 bg-purple-500 hover:bg-purple-600 text-white" aria-label="Search rentals">
                 <Search size={18} />
               </Button>
             </form>
             <Button 
               variant="link" 
-              className="text-sm w-full justify-center text-blue-500"
+              className="text-sm w-full justify-center text-purple-500 hover:text-purple-600"
               onClick={handleUseMyLocation}
             >
               <MapPin className="mr-2" />
