@@ -1,5 +1,4 @@
 
-
 @layer components {
   .category-card {
     @apply relative flex flex-col justify-end overflow-hidden rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 border-primary/30 hover:border-primary;
@@ -18,7 +17,6 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-fashion to-unique bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent;
   }
 }
-
