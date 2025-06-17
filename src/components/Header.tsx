@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, MapPin, Menu } from "lucide-react";
-import { useToast } from "@/hooks/use-toast"; // Changed import path
+import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
@@ -15,6 +15,25 @@ const Header = ({ onSearch }: HeaderProps) => {
   const [location, setLocation] = useState("");
   const [activeTab, setActiveTab] = useState("search");
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Debug CSS variables
+    const rootStyles = getComputedStyle(document.documentElement);
+    console.log("CSS Variables Debug:");
+    console.log("--primary:", rootStyles.getPropertyValue('--primary'));
+    console.log("--background:", rootStyles.getPropertyValue('--background'));
+    console.log("--foreground:", rootStyles.getPropertyValue('--foreground'));
+    console.log("--fashion:", rootStyles.getPropertyValue('--fashion'));
+    
+    // Check if Tailwind classes are working
+    const testElement = document.createElement('div');
+    testElement.className = 'bg-red-500 text-white';
+    document.body.appendChild(testElement);
+    const testStyles = getComputedStyle(testElement);
+    console.log("Tailwind test - background:", testStyles.backgroundColor);
+    console.log("Tailwind test - color:", testStyles.color);
+    document.body.removeChild(testElement);
+  }, []);
 
   const handleSearchSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -69,17 +88,17 @@ const Header = ({ onSearch }: HeaderProps) => {
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <h1 className="text-2xl font-bold mr-2">
-              <span className="gradient-text">Rentiverse</span>
+              <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Rentiverse</span>
             </h1>
           </Link>
-          <span className="text-xs bg-fashion/20 text-fashion px-2 py-1 rounded-full">
+          <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">
             beta
           </span>
         </div>
         
         <div className="hidden md:flex items-center space-x-4">
           <Tabs defaultValue="search" value={activeTab} onValueChange={setActiveTab} className="w-auto">
-            <TabsList className="bg-muted/50 p-1 rounded-lg">
+            <TabsList className="bg-gray-100 p-1 rounded-lg">
               <TabsTrigger 
                 value="search" 
                 className="data-[state=active]:bg-white data-[state=active]:shadow-sm px-4 py-1.5 rounded-md text-sm"
@@ -127,7 +146,7 @@ const Header = ({ onSearch }: HeaderProps) => {
           >
             Sign In
           </Button>
-          <Button className="bg-primary" size="sm"
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white" size="sm"
             onClick={() => {
               toast({
                 title: "List Your Rental",
@@ -162,7 +181,7 @@ const Header = ({ onSearch }: HeaderProps) => {
                   </Button>
                 </SheetClose>
                 <SheetClose asChild>
-                  <Button className="bg-primary w-full justify-start" 
+                  <Button className="bg-blue-500 hover:bg-blue-600 text-white w-full justify-start" 
                     onClick={() => {
                       toast({
                         title: "List Your Rental",
@@ -179,9 +198,9 @@ const Header = ({ onSearch }: HeaderProps) => {
         </div>
       </div>
 
-      <div className="md:hidden px-4 pb-3 border-t border-border md:border-t-0">
+      <div className="md:hidden px-4 pb-3 border-t border-gray-200 md:border-t-0">
         <Tabs defaultValue="search" value={activeTab} onValueChange={setActiveTab} className="w-full mb-2 pt-3">
-          <TabsList className="w-full bg-muted/50 p-1 rounded-lg flex justify-evenly">
+          <TabsList className="w-full bg-gray-100 p-1 rounded-lg flex justify-evenly">
             <TabsTrigger 
               value="search" 
               className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm px-4 py-2 rounded-md"
@@ -210,13 +229,13 @@ const Header = ({ onSearch }: HeaderProps) => {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
-              <Button size="sm" type="submit" className="absolute right-1 bg-primary" aria-label="Search rentals">
+              <Button size="sm" type="submit" className="absolute right-1 bg-blue-500 hover:bg-blue-600 text-white" aria-label="Search rentals">
                 <Search size={18} />
               </Button>
             </form>
             <Button 
               variant="link" 
-              className="text-sm w-full justify-center text-primary"
+              className="text-sm w-full justify-center text-blue-500"
               onClick={handleUseMyLocation}
             >
               <MapPin className="mr-2" />
