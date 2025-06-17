@@ -27,14 +27,12 @@ const fetchListings = async (searchTerm: string): Promise<Listing[]> => {
     let query = supabase.from("listings").select("id, title, description, category, location, price_per_day, image_url");
 
     if (searchTerm) {
-      // Basic search: checking title, category, and location.
-      // For more advanced search, consider full-text search capabilities of PostgreSQL.
       query = query.or(
         `title.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%,location.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%`
       );
     }
 
-    query = query.order("created_at", { ascending: false }).limit(8); // Show latest 8 listings
+    query = query.order("created_at", { ascending: false }).limit(8);
 
     const { data, error } = await query;
 

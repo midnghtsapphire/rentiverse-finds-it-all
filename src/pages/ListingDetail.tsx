@@ -89,7 +89,6 @@ const ListingDetail = () => {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Image Section */}
           <div className="space-y-4">
             <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
               <img
@@ -100,7 +99,6 @@ const ListingDetail = () => {
             </div>
           </div>
 
-          {/* Details Section */}
           <div className="space-y-6">
             <div>
               {listing.category && (
