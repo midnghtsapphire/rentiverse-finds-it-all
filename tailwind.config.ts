@@ -63,15 +63,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Rentiverse custom colors
-				"fashion": "#9b87f5",
-				"pets": "#7E69AB",
-				"furniture": "#0EA5E9",
-				"equipment": "#F97316",
-				"events": "#D946EF",
-				"media": "#8E9196",
-				"lifestyle": "#0EA5E9",
-				"unique": "#ea384c",
+				// Rentiverse custom colors using CSS variables
+				"fashion": "hsl(var(--fashion))",
+				"pets": "hsl(var(--pets))",
+				"furniture": "hsl(var(--furniture))",
+				"equipment": "hsl(var(--equipment))",
+				"events": "hsl(var(--events))",
+				"media": "hsl(var(--media))",
+				"lifestyle": "hsl(var(--lifestyle))",
+				"unique": "hsl(var(--unique))",
+				"tools": "hsl(var(--tools))",
+				"automotive": "hsl(var(--automotive))",
+				"sports": "hsl(var(--sports))",
+				"kitchen": "hsl(var(--kitchen))",
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

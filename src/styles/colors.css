@@ -31,15 +31,15 @@
 
     --radius: 0.75rem;
 
-    /* Category colors */
-    --fashion: 231 48% 48%;
+    /* Category colors - Updated with proper HSL values */
+    --fashion: 252 82% 74%;
     --pets: 142 76% 36%;
     --furniture: 26 60% 40%;
     --equipment: 36 100% 50%;
     --events: 291 64% 42%;
     --media: 207 90% 54%;
     --lifestyle: 188 100% 42%;
-    --unique: 262 52% 47%;
+    --unique: 0 84% 60%;
     --tools: 4 90% 58%;
     --automotive: 200 18% 46%;
     --sports: 88 50% 53%;
