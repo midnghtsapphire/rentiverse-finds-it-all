@@ -32,18 +32,18 @@
     --radius: 0.75rem;
 
     /* Category colors */
-    --fashion: #e91e63;
-    --pets: #4caf50;
-    --furniture: #795548;
-    --equipment: #ff9800;
-    --events: #9c27b0;
-    --media: #2196f3;
-    --lifestyle: #00bcd4;
-    --unique: #673ab7;
-    --tools: #f44336;
-    --automotive: #607d8b;
-    --sports: #8bc34a;
-    --kitchen: #ff5722;
+    --fashion: 231 48% 48%;
+    --pets: 142 76% 36%;
+    --furniture: 26 60% 40%;
+    --equipment: 36 100% 50%;
+    --events: 291 64% 42%;
+    --media: 207 90% 54%;
+    --lifestyle: 188 100% 42%;
+    --unique: 262 52% 47%;
+    --tools: 4 90% 58%;
+    --automotive: 200 18% 46%;
+    --sports: 88 50% 53%;
+    --kitchen: 14 100% 57%;
   }
 
   .dark {
