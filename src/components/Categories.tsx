@@ -1,200 +1,68 @@
 
-import { Sparkles } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { marketplaceCategories } from "@/data/marketplace";
 
-// Define category images
-const categoryImages = {
-  fashion: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=200&auto=format",
-  pets: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=200&auto=format",
-  furniture: "https://images.unsplash.com/photo-1538688423619-a81d3f23454b?q=80&w=200&auto=format",
-  equipment: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=200&auto=format",
-  events: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format",
-  media: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=200&auto=format",
-  lifestyle: "https://images.unsplash.com/photo-1560807707-8cc77767d783?q=80&w=200&auto=format",
-  unique: "https://images.unsplash.com/photo-1554941068-a252680d25d3?q=80&w=200&auto=format",
-  tools: "https://images.unsplash.com/photo-1609899252456-6db1eb0aecc5?q=80&w=200&auto=format",
-  automotive: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=200&auto=format",
-  sports: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=200&auto=format",
-  kitchen: "https://images.unsplash.com/photo-1556909114-c71d2e2c4d37?q=80&w=200&auto=format"
-};
+interface CategoriesProps {
+  onSelectCategory: (category: string) => void;
+}
 
-const categoryGroups = [
-  {
-    name: "Fashion & Beauty",
-    color: "fashion",
-    items: [
-      { name: "Dresses", image: categoryImages.fashion },
-      { name: "Purses", image: categoryImages.fashion },
-      { name: "Glasses", image: categoryImages.fashion },
-      { name: "Jewelry", image: categoryImages.fashion },
-    ]
-  },
-  {
-    name: "Tools & Hardware",
-    color: "tools",
-    items: [
-      { name: "Air Compressors", image: categoryImages.tools },
-      { name: "Nail Guns", image: categoryImages.tools },
-      { name: "Power Drills", image: categoryImages.tools },
-      { name: "Pressure Washers", image: categoryImages.tools },
-    ]
-  },
-  {
-    name: "Pets & Animals",
-    color: "pets",
-    items: [
-      { name: "Goats", image: categoryImages.pets },
-      { name: "Mini Pigs", image: categoryImages.pets },
-      { name: "Therapy Dogs", image: categoryImages.pets },
-      { name: "Parrots", image: categoryImages.pets },
-    ]
-  },
-  {
-    name: "Furniture & Decor",
-    color: "furniture",
-    items: [
-      { name: "Couches", image: categoryImages.furniture },
-      { name: "Art", image: categoryImages.furniture },
-      { name: "Plants", image: categoryImages.furniture },
-      { name: "Chandeliers", image: categoryImages.furniture },
-    ]
-  },
-  {
-    name: "Heavy Equipment",
-    color: "equipment",
-    items: [
-      { name: "Excavators", image: categoryImages.equipment },
-      { name: "Trailers", image: categoryImages.equipment },
-      { name: "Augers", image: categoryImages.equipment },
-      { name: "Concrete Mixers", image: categoryImages.equipment },
-    ]
-  },
-  {
-    name: "Sports & Recreation",
-    color: "sports",
-    items: [
-      { name: "Kayaks", image: categoryImages.sports },
-      { name: "Bikes", image: categoryImages.sports },
-      { name: "Ski Equipment", image: categoryImages.sports },
-      { name: "Camping Gear", image: categoryImages.sports },
-    ]
-  },
-  {
-    name: "Automotive",
-    color: "automotive",
-    items: [
-      { name: "Car Jacks", image: categoryImages.automotive },
-      { name: "Diagnostic Tools", image: categoryImages.automotive },
-      { name: "Car Wash Equipment", image: categoryImages.automotive },
-      { name: "Tire Changers", image: categoryImages.automotive },
-    ]
-  },
-  {
-    name: "Kitchen Equipment",
-    color: "kitchen",
-    items: [
-      { name: "Stand Mixers", image: categoryImages.kitchen },
-      { name: "Food Processors", image: categoryImages.kitchen },
-      { name: "Espresso Machines", image: categoryImages.kitchen },
-      { name: "Catering Equipment", image: categoryImages.kitchen },
-    ]
-  },
-  {
-    name: "Events & Entertainment",
-    color: "events",
-    items: [
-      { name: "Bounce Houses", image: categoryImages.events },
-      { name: "Photo Booths", image: categoryImages.events },
-      { name: "Karaoke Machines", image: categoryImages.events },
-      { name: "Party Equipment", image: categoryImages.events },
-    ]
-  },
-  {
-    name: "Media Gear",
-    color: "media",
-    items: [
-      { name: "DSLRs", image: categoryImages.media },
-      { name: "Ring Lights", image: categoryImages.media },
-      { name: "Podcast Kits", image: categoryImages.media },
-      { name: "Green Screens", image: categoryImages.media },
-    ]
-  },
-  {
-    name: "Lifestyle",
-    color: "lifestyle",
-    items: [
-      { name: "Surfboards", image: categoryImages.lifestyle },
-      { name: "Hot Tubs", image: categoryImages.lifestyle },
-      { name: "Tiny Cabins", image: categoryImages.lifestyle },
-      { name: "Glamping Gear", image: categoryImages.lifestyle },
-    ]
-  },
-  {
-    name: "Unique Experiences",
-    color: "unique",
-    items: [
-      { name: "Beekeeper for a Day", image: categoryImages.unique },
-      { name: "UFO Detectors", image: categoryImages.unique },
-      { name: "Psychic Reading", image: categoryImages.unique },
-      { name: "Unusual Rentals", image: categoryImages.unique },
-    ]
-  },
-];
-
-const Categories = () => {
-  const { toast } = useToast();
-  
+const Categories = ({ onSelectCategory }: CategoriesProps) => {
   const handleCategoryClick = (category: string) => {
-    toast({
-      title: "Category Selected",
-      description: `You clicked on the ${category} category. Showing related rentals.`,
-    });
+    onSelectCategory(category);
+    document.getElementById("featured-listings")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center">Browse by Category</h2>
-      <p className="text-gray-600 text-center mb-12">Discover thousands of unique items available for rent</p>
+    <section id="categories" className="container mx-auto px-4 py-16">
+      <div className="mb-12 text-center">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-primary/80">
+          Browse by category
+        </p>
+        <h2 className="mb-4 text-3xl font-bold md:text-4xl">Start with the highest-intent rental moments</h2>
+        <p className="mx-auto max-w-2xl text-gray-600">
+          Rentiverse launches best when people can immediately spot the categories where access beats ownership. These curated entry points help the marketplace feel intentional from day one.
+        </p>
+      </div>
       
-      <div className="space-y-12">
-        {categoryGroups.map((group) => (
-          <div key={group.name} className="animate-fade-in">
-            <h3 className="text-2xl font-semibold mb-6 flex items-center">
-              <span 
-                className={`w-4 h-4 mr-2 rounded-full bg-${group.color}`} 
-                style={{ backgroundColor: `var(--${group.color}, #9b87f5)` }} 
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {marketplaceCategories.map((category) => (
+          <article
+            key={category.name}
+            className="group overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={category.image}
+                alt={category.name}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              {group.name}
-            </h3>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
-              {group.items.map((item) => (
-                <a 
-                  onClick={() => handleCategoryClick(item.name)}
-                  key={item.name} 
-                  className="relative category-card aspect-square"
-                  style={{ 
-                    backgroundColor: `var(--${group.color}, #9b87f5)10`,
-                    borderColor: `var(--${group.color}, #9b87f5)30`
-                  }}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5">
+                <span
+                  className="inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white"
+                  style={{ backgroundColor: `hsl(var(--${category.accent}, var(--primary)))` }}
                 >
-                  <div className="absolute inset-0 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover opacity-60"
-                    />
-                  </div>
-                  <div className="mt-auto backdrop-blur-sm bg-white/80 absolute bottom-0 left-0 right-0 px-6 py-3 border-t border-gray-200 z-10">
-                    <h4 className="font-semibold">{item.name}</h4>
-                  </div>
-                </a>
-              ))}
+                  {category.searchTerm}
+                </span>
+                <h3 className="mt-3 text-2xl font-semibold text-white">{category.name}</h3>
+              </div>
             </div>
-          </div>
+            <div className="space-y-4 p-6">
+              <p className="text-sm leading-6 text-muted-foreground">{category.description}</p>
+              <Button
+                variant="ghost"
+                className="px-0 text-primary hover:bg-transparent hover:text-primary/80"
+                onClick={() => handleCategoryClick(category.searchTerm)}
+              >
+                Explore {category.name}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

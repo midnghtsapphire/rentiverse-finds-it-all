@@ -2,8 +2,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Sparkles, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Search, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { marketplaceStats } from "@/data/marketplace";
 
 interface HeroProps {
   onSearch: (term: string) => void;
@@ -12,6 +13,11 @@ interface HeroProps {
 const Hero = ({ onSearch }: HeroProps) => {
   const [zipCode, setZipCode] = useState("");
   const { toast } = useToast();
+
+  const submitSearch = (value: string) => {
+    onSearch(value);
+    document.getElementById("featured-listings")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +28,7 @@ const Hero = ({ onSearch }: HeroProps) => {
       });
       return;
     }
-    onSearch(zipCode);
+    submitSearch(zipCode);
     toast({
       title: "Searching for rentals",
       description: `Finding everything rentable near ${zipCode}`,
@@ -64,84 +70,126 @@ const Hero = ({ onSearch }: HeroProps) => {
 
   const handleSurpriseMe = () => {
     const surprises = [
-      "Mobile hot tubs for your backyard",
-      "Professional karaoke equipment for your party",
-      "Goats for lawn maintenance",
-      "Designer dresses for your event",
-      "UFO detectors for your next camping trip",
-      "Mini excavators for your garden project"
+      "photo booth",
+      "camping",
+      "tile saw",
+      "formalwear",
+      "podcast kit",
+      "garden party"
     ];
     
     const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+    setZipCode(randomSurprise);
+    submitSearch(randomSurprise);
     
     toast({
       title: "🎉 Surprise Found!",
-      description: `We found something unexpected: ${randomSurprise}`,
+      description: `Showing curated results for ${randomSurprise}`,
     });
   };
 
   return (
-    <div className="relative w-full">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-600 z-0"></div>
+    <section className="relative w-full overflow-hidden bg-slate-950">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.35),_transparent_30%),radial-gradient(circle_at_80%_20%,_rgba(236,72,153,0.25),_transparent_30%),linear-gradient(135deg,_#020617,_#1e1b4b_40%,_#111827)]" />
       
-      <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-purple-300/30 blur-3xl"></div>
-      <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-pink-300/30 blur-3xl"></div>
+      <div className="absolute left-10 top-20 h-64 w-64 rounded-full bg-purple-300/20 blur-3xl" />
+      <div className="absolute bottom-10 right-10 h-96 w-96 rounded-full bg-pink-300/20 blur-3xl" />
       
-      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Discover the Universe of</span>
-            <br />
-            <span className="text-white">All Things Rentable</span>
+      <div className="container relative z-10 mx-auto px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="mb-6 inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur">
+            <Sparkles className="mr-2 h-4 w-4 text-pink-300" />
+            Rentiverse finds it all — built for local access over ownership
+          </div>
+
+          <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-6xl">
+            Discover the place to rent
+            <span className="bg-gradient-to-r from-fuchsia-300 via-violet-200 to-sky-200 bg-clip-text text-transparent">
+              {" "}almost anything nearby
+            </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-white/90 mb-10">
-            From designer dresses to farm goats, mobile saunas to podcast studios,
-            <br className="hidden md:block" />
-            find everything rentable near you.
+          <p className="mx-auto mb-10 max-w-3xl text-lg text-white/80 md:text-xl">
+            Rentiverse is the launch-ready storefront for tools, party gear, creator kits, outdoor equipment, and occasion-based rentals. It now ships with curated inventory so the website still works before the live marketplace is fully populated.
           </p>
           
-          <form onSubmit={handleSearchSubmit} className="max-w-lg mx-auto mb-8">
-            <div className="flex">
+          <form onSubmit={handleSearchSubmit} className="mx-auto mb-8 max-w-2xl">
+            <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/10 p-3 shadow-2xl backdrop-blur md:flex-row">
               <Input 
                 type="text"
-                placeholder="Enter ZIP code or city"
-                className="rounded-r-none text-lg py-6 bg-white border-white"
+                placeholder="Search by city, use case, or category"
+                className="h-14 rounded-2xl border-white/15 bg-white/95 text-base text-slate-900 placeholder:text-slate-500 md:text-lg"
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
               />
               <Button 
                 type="submit"
                 size="lg" 
-                className="rounded-l-none bg-purple-600 hover:bg-purple-700 text-white px-6 py-6"
+                className="h-14 rounded-2xl bg-white text-slate-950 hover:bg-white/90"
               >
-                <Search className="mr-2" />
-                Search
+                <Search className="mr-2 h-4 w-4" />
+                Find rentals
               </Button>
             </div>
           </form>
+
+          <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
+            {["tools", "events", "camping", "creator", "formalwear"].map((term) => (
+              <Button
+                key={term}
+                variant="outline"
+                className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                onClick={() => {
+                  setZipCode(term);
+                  submitSearch(term);
+                }}
+              >
+                {term}
+              </Button>
+            ))}
+          </div>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button 
               variant="outline" 
-              className="border-2 border-white/50 bg-white/10 hover:bg-white/20 text-white hover:text-white px-6 py-6 h-auto text-lg backdrop-blur-sm"
+              className="h-auto border-2 border-white/40 bg-white/10 px-6 py-6 text-lg text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
               onClick={handleUseMyLocation}
             >
-              <MapPin className="mr-2" />
+              <MapPin className="mr-2 h-5 w-5" />
               Use My Location
             </Button>
             
             <Button 
-              className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-6 h-auto text-lg"
+              className="h-auto bg-pink-500 px-6 py-6 text-lg text-white hover:bg-pink-600"
               onClick={handleSurpriseMe}
             >
-              <Sparkles className="mr-2" />
+              <Sparkles className="mr-2 h-5 w-5" />
               Surprise Me!
             </Button>
+
+            <Button
+              variant="ghost"
+              className="h-auto px-6 py-6 text-lg text-white hover:bg-white/10 hover:text-white"
+              onClick={() =>
+                document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+            >
+              How it works
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+
+          <div className="mt-14 grid gap-4 text-left md:grid-cols-3">
+            {marketplaceStats.map((stat) => (
+              <div key={stat.label} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                <p className="text-3xl font-bold text-white">{stat.value}</p>
+                <p className="mt-2 text-sm uppercase tracking-[0.2em] text-white/60">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

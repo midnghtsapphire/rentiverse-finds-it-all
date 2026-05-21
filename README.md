@@ -1,82 +1,63 @@
-# Welcome to your Lovable project
+# Rentiverse Finds It All
 
-## Project info
+Rentiverse is a launch-ready storefront for a local rental marketplace: tools, event gear, outdoor equipment, creator kits, home-hosting inventory, and special-occasion style rentals in one place.
 
-**URL**: https://lovable.dev/projects/5084a798-ca9f-4df7-be08-4f77c344aca4
+This repository now ships a complete branded website instead of a default Lovable scaffold. It also includes curated fallback listings so the experience still works when the live Supabase catalog is empty or unavailable.
 
-## How can I edit this code?
+## What changed
 
-There are several ways of editing your application.
+- Replaced scaffold messaging with Rentiverse-specific positioning and content
+- Added curated launch inventory as a resilient fallback for empty Supabase states
+- Improved listing detail pages so fallback listings and live listings both render correctly
+- Removed placeholder UI flows and debug logging from the main customer journey
+- Added revvel-standard documentation for launch, deployment, brand, and security
 
-**Use Lovable**
+## Tech stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5084a798-ca9f-4df7-be08-4f77c344aca4) and start prompting.
+- Vite
+- React 18
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Supabase client integration
 
-Changes made via Lovable will be committed automatically to this repo.
+## Local development
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm ci
+npm run lint
+npm run build
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Environment variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Copy `.env.example` to `.env` and set:
 
-**Use GitHub Codespaces**
+```bash
+VITE_SUPABASE_URL=...
+VITE_SUPABASE_ANON_KEY=...
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+If those values are not provided, the app falls back to the existing public Supabase configuration already wired into the project.
 
-## What technologies are used for this project?
+## Key product sections
 
-This project is built with:
+- Hero with search and curated demand-entry chips
+- Category-led discovery for high-intent rental use cases
+- Featured listings backed by Supabase with graceful curated fallback
+- Listing detail pages with pricing, delivery, and trust context
+- Trust, FAQ, and owner acquisition sections
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Documentation
 
-## How can I deploy this project?
+- `CHANGELOG.md`
+- `DEPLOYMENT_GUIDE.md`
+- `GO_TO_MARKET.md`
+- `BRAND_GUIDELINES.md`
+- `SECURITY.md`
 
-Simply open [Lovable](https://lovable.dev/projects/5084a798-ca9f-4df7-be08-4f77c344aca4) and click on Share -> Publish.
+## Validation completed
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
-
----
-
-## Test
-
-| Feature | Status |
-|---------|--------|
-| Feature | ✅ Ready |
-
+- `npx eslint src/components/Hero.tsx src/components/Header.tsx src/components/Categories.tsx src/components/SupabaseFeaturedListings.tsx src/components/HowItWorks.tsx src/components/CallToAction.tsx src/components/Footer.tsx src/components/MarketplaceHighlights.tsx src/components/TrustSection.tsx src/components/FaqSection.tsx src/pages/Index.tsx src/pages/ListingDetail.tsx src/pages/NotFound.tsx src/data/marketplace.ts src/integrations/supabase/client.ts`
+- `npm run build`
