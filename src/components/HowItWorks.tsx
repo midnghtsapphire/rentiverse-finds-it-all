@@ -1,5 +1,5 @@
 
-import { Search, MapPin, Calendar, CreditCard } from "lucide-react";
+import { Calendar, CreditCard, Search, ShieldCheck } from "lucide-react";
 
 const steps = [
   {
@@ -8,9 +8,9 @@ const steps = [
     description: "Browse thousands of rentable items across multiple categories."
   },
   {
-    icon: <MapPin className="w-10 h-10 text-primary" />,
-    title: "Find Nearby",
-    description: "Use your location or ZIP code to find rentals in your area."
+    icon: <ShieldCheck className="w-10 h-10 text-primary" />,
+    title: "Review pickup & trust details",
+    description: "Every listing highlights what is included, how handoff works, and what renters should expect."
   },
   {
     icon: <Calendar className="w-10 h-10 text-primary" />,
@@ -26,11 +26,14 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <div className="container mx-auto px-4 py-16">
+    <section id="how-it-works" className="container mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">How Rentiverse Works</h2>
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-primary/80">
+          How it works
+        </p>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">A simple marketplace flow for renters and owners</h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Renting has never been easier. Follow these simple steps to find and rent anything you need.
+          The product story is now clear even before payments and back-office automation are fully wired up.
         </p>
       </div>
       
@@ -38,7 +41,7 @@ const HowItWorks = () => {
         {steps.map((step, index) => (
           <div 
             key={index} 
-            className="flex flex-col items-center text-center p-6 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+            className="relative flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md"
           >
             <div className="mb-4 bg-primary/10 p-4 rounded-full">
               {step.icon}
@@ -54,7 +57,7 @@ const HowItWorks = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

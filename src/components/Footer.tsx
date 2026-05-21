@@ -1,6 +1,5 @@
 
-import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter } from 'lucide-react'; // Using Lucide icons for consistency
+import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
@@ -14,33 +13,33 @@ const Footer = () => {
       title: "Categories",
       ariaLabel: "Browse rental categories",
       links: [
-        { name: "Fashion & Beauty", href: "#" },
-        { name: "Pets & Animals", href: "#" },
-        { name: "Furniture & Decor", href: "#" },
-        { name: "Heavy Equipment", href: "#" },
-        { name: "Events & Entertainment", href: "#" },
+        { name: "Tools & DIY", href: "#categories" },
+        { name: "Events & Parties", href: "#categories" },
+        { name: "Outdoor Adventure", href: "#categories" },
+        { name: "Creator Gear", href: "#categories" },
+        { name: "Style & Occasion", href: "#categories" },
       ],
     },
     {
       title: "About",
       ariaLabel: "Learn more about Rentiverse",
       links: [
-        { name: "How It Works", href: "#" },
-        { name: "List Your Rental", href: "#" },
-        { name: "Trust & Safety", href: "#" },
-        { name: "FAQ", href: "#" },
-        { name: "About Us", href: "#" },
+        { name: "How It Works", href: "#how-it-works" },
+        { name: "List Your Rental", href: "#list-your-rental" },
+        { name: "Trust & Safety", href: "#trust" },
+        { name: "FAQ", href: "#faq" },
+        { name: "Featured Listings", href: "#featured-listings" },
       ],
     },
     {
       title: "Support",
       ariaLabel: "Get help and support",
       links: [
-        { name: "Contact Us", href: "#" },
-        { name: "Help Center", href: "#" },
-        { name: "Privacy Policy", href: "#" },
-        { name: "Terms of Service", href: "#" },
-        { name: "Accessibility", href: "#" },
+        { name: "Contact Us", href: "mailto:hello@rentiverse.com" },
+        { name: "Help Center", href: "#faq" },
+        { name: "Security Approach", href: "#trust" },
+        { name: "Launch FAQ", href: "#faq" },
+        { name: "Owner Onboarding", href: "#list-your-rental" },
       ],
     },
   ];
@@ -53,7 +52,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Rentiverse</h3>
             <p className="text-gray-400 mb-4 text-sm">
-              The universe of all things rentable. Find anything you need, rent it for as long as you want.
+              The universe of all things rentable. Find nearby gear, occasion-based essentials, and launch-ready local inventory without forcing ownership.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -75,13 +74,13 @@ const Footer = () => {
               <h3 className="text-lg font-semibold mb-4">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
-                  <li key={link.name}>
-                    <Link to={link.href} className="text-gray-400 hover:text-white text-sm transition-colors">
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+                    <li key={link.name}>
+                      <a href={link.href} className="text-gray-400 hover:text-white text-sm transition-colors">
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
             </nav>
           ))}
         </div>
