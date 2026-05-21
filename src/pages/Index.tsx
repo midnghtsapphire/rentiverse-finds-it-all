@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import MarketplaceHighlights from "@/components/MarketplaceHighlights";
 import TrustSection from "@/components/TrustSection";
 import FaqSection from "@/components/FaqSection";
+import AffiliateResearchBoard from "@/components/AffiliateResearchBoard";
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -39,6 +40,7 @@ const Index = () => {
         <MarketplaceHighlights />
         <Categories onSelectCategory={handleSearch} />
         <SupabaseFeaturedListings searchTerm={searchTerm} onClearSearch={clearSearch} />
+        <AffiliateResearchBoard onSearch={handleSearch} />
         <HowItWorks />
         <TrustSection />
         <FaqSection />

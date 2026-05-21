@@ -35,6 +35,10 @@ const Admin = () => {
             <p className="text-gray-600">
               Manage your rental platform, affiliate partnerships, and the standard admin surface expected in each ship-to-market website app.
             </p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Research-backed partner leads from the homepage sourcing board should be operationalized here through the
+              Companies and Affiliate Links tabs.
+            </p>
           </CardContent>
         </Card>
 

@@ -11,6 +11,7 @@ This repository now ships a complete branded website instead of a default Lovabl
 - Improved listing detail pages so fallback listings and live listings both render correctly
 - Removed placeholder UI flows and debug logging from the main customer journey
 - Added standard user login, admin login, cart, and Stripe-ready checkout routes
+- Added a research-backed affiliate sourcing board that turns public rental-marketplace research into in-app category seeding and admin follow-up
 - Added revvel-standard documentation for launch, deployment, brand, and security
 
 ## Tech stack
@@ -49,6 +50,7 @@ Stripe handoff activates when `VITE_STRIPE_PAYMENT_LINK` is configured.
 - Hero with search and curated demand-entry chips
 - Category-led discovery for high-intent rental use cases
 - Featured listings backed by Supabase with graceful curated fallback
+- Research-backed affiliate sourcing board for partner-led category expansion
 - Listing detail pages with pricing, delivery, and trust context
 - Standard user authentication, admin authentication, cart, and checkout flows
 - Trust, FAQ, and owner acquisition sections

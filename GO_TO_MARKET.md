@@ -76,6 +76,34 @@ Rentiverse should avoid fighting broad classifieds on breadth alone. The better 
 - more flexible than retailer-owned rental programs
 - clearer pickup/trust expectations than generic listings sites
 
+## Research-backed affiliate expansion
+
+Ship-to-market readiness also needs a repeatable way to turn category research into monetizable supply. The app now exposes that as an in-product sourcing board and can operationalize it with the existing admin companies + affiliate-links tables.
+
+### Priority research targets
+
+- **FriendWithA** is a useful benchmark for tools, party gear, and general peer-to-peer inventory because it publicly positions itself around broad gear rentals and referral-led growth.[6]
+- **GeerGarage** is the strongest outdoor gear benchmark in this set because it publicly emphasizes gear sharing and partnership opportunities.[7][8]
+- **Outdoorsy** provides a public affiliate-program model that Rentiverse can mirror for overflow demand when local inventory is not yet dense enough.[9]
+- **BabyQuip** shows how travel and hospitality partnerships can monetize family-support categories adjacent to home hosting and local events.[10]
+- **ShareGrid** remains a strong creator-gear research target for cameras, lenses, and lighting kits that map directly to Rentiverse's creator lane.[11]
+
+### Revenue model
+
+1. Research public category leaders and record the most repeated product types they emphasize.
+2. Seed those product types into the Rentiverse catalog as curated local demand tests instead of copying third-party listings verbatim.
+3. Add approved partner companies and affiliate URLs in the admin dashboard once network access or direct approval is in place.
+4. Keep local checkout primary; use affiliate links as the overflow monetization path when Rentiverse cannot fulfill demand directly.
+
+### Recommended network stack
+
+- **Rakuten Advertising**
+- **CJ Affiliate**
+- **Impact**
+- **ShareASale**
+
+These are the main approval and tracking networks to check first when researching how a partner program can pay Rentiverse for referred demand.[12][13][14][15]
+
 ## Metrics to track
 
 - searches to listing-detail conversion rate
@@ -96,4 +124,13 @@ Start in one metro area with dense supply in 3–5 categories. Use the curated f
 [3] Future Market Insights, “P2P Rental Apps Market | Global Market Analysis Report - 2036” — https://www.futuremarketinsights.com/reports/p2p-rental-apps-market  
 [4] Market.us / Scoop, “P2P Rental Apps Market Tech Rises Growth at 84.7 Billion” — https://scoop.market.us/p2p-rental-apps-market-news/  
 [5] Neighbors Trailer, “The State of Peer-to-Peer Trailer Rental: 2026 Industry Snapshot” — https://neighborstrailer.com/blog/the-state-of-peer-to-peer-trailer-rental-2026-industry-snapshot
-
+[6] FriendWithA — https://friendwitha.com/  
+[7] GeerGarage — https://www.geergarage.com/  
+[8] GeekWire, “Rent a tent: Camping gear marketplace startup aims to crack the code for outdoor equipment rental” — https://www.geekwire.com/2023/rent-a-tent-camping-gear-marketplace-startup-aims-to-crack-the-code-for-outdoor-equipment-rental/  
+[9] Outdoorsy affiliate program — https://www.outdoorsy.com/affiliate-program  
+[10] BabyQuip partnerships — https://www.babyquip.com/partnerships  
+[11] ShareGrid — https://www.sharegrid.com/  
+[12] The Digital Merchant, “Best Brand Partnership and Affiliate Management Platforms — A Practical Guide” — https://thedigitalmerchant.com/best-brand-partnership-and-affiliate-management-platforms/  
+[13] JoinBrands, “12 Best Affiliate Marketing Platforms for Creators in 2025” — https://joinbrands.com/blog/best-affiliate-marketing-platforms/  
+[14] Miss K Digital, “The Best Affiliate Marketing Platforms in 2025” — https://misskdigital.com/best-affiliate-marketing-platforms/  
+[15] AdTools, “ShareASale vs CJ Affiliate vs Impact vs Digistore24” — https://adtools.org/buyers-guide/shareasale-vs-cj-affiliate-vs-impact-vs-digistore24-affiliate-marketing-buyer-s-guide

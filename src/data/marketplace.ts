@@ -20,6 +20,18 @@ export interface MarketplaceCategory {
   image: string;
 }
 
+export interface AffiliateResearchLead {
+  id: string;
+  company: string;
+  category: string;
+  searchTerm: string;
+  monetization: string;
+  sourceUrl: string;
+  summary: string;
+  productSignals: string[];
+  integrationStatus: string;
+}
+
 const createArtwork = ({
   eyebrow,
   headline,
@@ -296,6 +308,76 @@ export const trustPrinciples = [
     description:
       "Rentiverse can mix marketplace inventory with editorially curated launch collections so the site never feels empty.",
   },
+];
+
+export const affiliateResearchLeads: AffiliateResearchLead[] = [
+  {
+    id: "friendwitha",
+    company: "FriendWithA",
+    category: "Tools & DIY",
+    searchTerm: "tools",
+    monetization: "Referral-led partner candidate",
+    sourceUrl: "https://friendwitha.com/",
+    summary:
+      "Useful benchmark for broad peer-to-peer gear supply because it spans tools, outdoor kits, and occasion inventory with public referral-style growth signals.",
+    productSignals: ["Pressure washers", "Camping kits", "Party speakers"],
+    integrationStatus: "Seed these categories into Rentiverse listings first, then add partner tracking in Admin → Companies and Affiliate Links.",
+  },
+  {
+    id: "geergarage",
+    company: "GeerGarage",
+    category: "Outdoor Adventure",
+    searchTerm: "outdoor",
+    monetization: "Direct partnership candidate",
+    sourceUrl: "https://www.geergarage.com/",
+    summary:
+      "A strong outdoor benchmark for research-backed category expansion because it publicly emphasizes gear-sharing and partnership opportunities.",
+    productSignals: ["Camp stoves", "Backpacking tents", "Snow kits"],
+    integrationStatus: "Use as a sourcing lead for local outdoor hosts while keeping the checkout flow inside Rentiverse.",
+  },
+  {
+    id: "sharegrid",
+    company: "ShareGrid",
+    category: "Photo & Creator Gear",
+    searchTerm: "creator",
+    monetization: "Creator-partner candidate",
+    sourceUrl: "https://www.sharegrid.com/",
+    summary:
+      "High-intent creator equipment benchmark for cameras, lenses, lighting, and production bundles that can map directly to Rentiverse creator search demand.",
+    productSignals: ["Camera bodies", "Lens kits", "Podcast lighting"],
+    integrationStatus: "Mirror the product types in curated launch inventory, then connect approved partner links in the admin dashboard.",
+  },
+  {
+    id: "outdoorsy",
+    company: "Outdoorsy",
+    category: "Outdoor Adventure",
+    searchTerm: "outdoor",
+    monetization: "Public affiliate-program model",
+    sourceUrl: "https://www.outdoorsy.com/affiliate-program",
+    summary:
+      "Provides a clear revenue-share example for travel-adjacent rentals and proves that affiliate monetization can sit alongside direct marketplace bookings.",
+    productSignals: ["Road trip kits", "Camper add-ons", "RV-ready gear"],
+    integrationStatus: "Use as the model for outbound affiliate offers when Rentiverse cannot fulfill the search locally.",
+  },
+  {
+    id: "babyquip",
+    company: "BabyQuip",
+    category: "Home Hosting",
+    searchTerm: "home",
+    monetization: "Travel-partner and referral candidate",
+    sourceUrl: "https://www.babyquip.com/partnerships",
+    summary:
+      "Relevant for family hosting and travel support categories where hospitality-style partnerships can monetize needs that local hosts do not yet cover.",
+    productSignals: ["High chairs", "Travel cribs", "Strollers"],
+    integrationStatus: "Stage as a future family-travel expansion lane after the current six launch categories gain supply density.",
+  },
+];
+
+export const affiliateRevenueLoop = [
+  "Research public category leaders and partner surfaces before seeding new inventory lanes.",
+  "Create curated in-app listings around the product types with the strongest demand signal.",
+  "Route monetization through Admin → Companies and Affiliate Links using approved network or direct partner URLs.",
+  "Send local demand through Rentiverse checkout first, then use affiliate offers only when local supply is thin.",
 ];
 
 export const sanitizeSearchTerm = (value: string) =>
