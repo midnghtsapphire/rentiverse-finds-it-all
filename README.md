@@ -10,6 +10,7 @@ This repository now ships a complete branded website instead of a default Lovabl
 - Added curated launch inventory as a resilient fallback for empty Supabase states
 - Improved listing detail pages so fallback listings and live listings both render correctly
 - Removed placeholder UI flows and debug logging from the main customer journey
+- Added standard user login, admin login, cart, and Stripe-ready checkout routes
 - Added revvel-standard documentation for launch, deployment, brand, and security
 
 ## Tech stack
@@ -37,9 +38,11 @@ Copy `.env.example` to `.env` and set:
 ```bash
 VITE_SUPABASE_URL=...
 VITE_SUPABASE_ANON_KEY=...
+VITE_STRIPE_PAYMENT_LINK=...
 ```
 
 If those values are not provided, the app falls back to the existing public Supabase configuration already wired into the project.
+Stripe handoff activates when `VITE_STRIPE_PAYMENT_LINK` is configured.
 
 ## Key product sections
 
@@ -47,6 +50,7 @@ If those values are not provided, the app falls back to the existing public Supa
 - Category-led discovery for high-intent rental use cases
 - Featured listings backed by Supabase with graceful curated fallback
 - Listing detail pages with pricing, delivery, and trust context
+- Standard user authentication, admin authentication, cart, and checkout flows
 - Trust, FAQ, and owner acquisition sections
 
 ## Documentation
@@ -59,5 +63,5 @@ If those values are not provided, the app falls back to the existing public Supa
 
 ## Validation completed
 
-- `npx eslint src/components/Hero.tsx src/components/Header.tsx src/components/Categories.tsx src/components/SupabaseFeaturedListings.tsx src/components/HowItWorks.tsx src/components/CallToAction.tsx src/components/Footer.tsx src/components/MarketplaceHighlights.tsx src/components/TrustSection.tsx src/components/FaqSection.tsx src/pages/Index.tsx src/pages/ListingDetail.tsx src/pages/NotFound.tsx src/data/marketplace.ts src/integrations/supabase/client.ts`
+- `npx eslint src/App.tsx src/components/Hero.tsx src/components/Header.tsx src/components/Categories.tsx src/components/SupabaseFeaturedListings.tsx src/components/HowItWorks.tsx src/components/CallToAction.tsx src/components/Footer.tsx src/components/MarketplaceHighlights.tsx src/components/TrustSection.tsx src/components/FaqSection.tsx src/components/RequireAuth.tsx src/components/AuthForm.tsx src/pages/Index.tsx src/pages/ListingDetail.tsx src/pages/NotFound.tsx src/pages/Login.tsx src/pages/AdminLogin.tsx src/pages/Cart.tsx src/pages/Checkout.tsx src/pages/Admin.tsx src/contexts/AuthContext.tsx src/contexts/CartContext.tsx src/data/marketplace.ts src/integrations/supabase/client.ts`
 - `npm run build`

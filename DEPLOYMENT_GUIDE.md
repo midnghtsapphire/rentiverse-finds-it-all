@@ -18,9 +18,11 @@ Set these variables in your hosting provider:
 ```bash
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key
+VITE_STRIPE_PAYMENT_LINK=https://buy.stripe.com/your-payment-link
 ```
 
-If they are omitted, the app still builds and falls back to the existing public project configuration plus the curated launch catalog.
+If the Supabase values are omitted, the app still builds and falls back to the existing public project configuration plus the curated launch catalog.
+If the Stripe payment link is omitted, the storefront still works but the live Stripe handoff remains disabled until configured.
 
 ## Local verification
 
@@ -60,11 +62,18 @@ npm run build
 - The frontend uses the public anon key only
 - Row Level Security should remain enabled for all production tables
 - Live catalog problems no longer blank the UI because the app now falls back to curated content
+- Admin access is authenticated through Supabase auth and verified against the `admin_users` table
+
+## Checkout notes
+
+- User login is required before reaching `/checkout`
+- Cart state is persisted locally in the browser for the storefront session
+- Live Stripe redirect uses `VITE_STRIPE_PAYMENT_LINK`
 
 ## Release checklist
 
 - Confirm environment variables are set correctly
 - Confirm lint passes for launch-critical files, or resolve the existing repo-wide lint backlog before production launch
 - Confirm `npm run build` passes
-- Smoke test `/` and at least one `/listing/:id` route
+- Smoke test `/`, `/login`, `/cart`, `/checkout`, `/admin/login`, and at least one `/listing/:id` route
 - Confirm contact CTA email targets are correct before public launch

@@ -1,11 +1,13 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { BadgeCheck, LogIn, Menu, Search, ShieldCheck, ShoppingCart, UserRound } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Menu, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 
 interface HeaderProps {
   onSearch: (term: string) => void;
@@ -14,6 +16,8 @@ interface HeaderProps {
 const Header = ({ onSearch }: HeaderProps) => {
   const [location, setLocation] = useState("");
   const { toast } = useToast();
+  const { user, isAdmin, signOut } = useAuth();
+  const { itemCount } = useCart();
 
   const handleSearchSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -33,12 +37,28 @@ const Header = ({ onSearch }: HeaderProps) => {
   };
 
   const navLinks = [
-    { href: "#categories", label: "Categories" },
-    { href: "#featured-listings", label: "Featured" },
-    { href: "#how-it-works", label: "How it works" },
-    { href: "#trust", label: "Trust" },
-    { href: "#faq", label: "FAQ" },
+    { href: "/#categories", label: "Categories" },
+    { href: "/#featured-listings", label: "Featured" },
+    { href: "/#how-it-works", label: "How it works" },
+    { href: "/#trust", label: "Trust" },
+    { href: "/#faq", label: "FAQ" },
   ];
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast({
+        title: "Signed out",
+        description: "Your Rentiverse session has ended.",
+      });
+    } catch (error) {
+      toast({
+        title: "Unable to sign out",
+        description: error instanceof Error ? error.message : "Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-white/90 backdrop-blur-sm">
@@ -59,9 +79,9 @@ const Header = ({ onSearch }: HeaderProps) => {
         <div className="hidden items-center gap-6 lg:flex">
           <nav className="flex items-center gap-4 text-sm text-slate-600">
             {navLinks.map((link) => (
-              <a key={link.label} href={link.href} className="transition-colors hover:text-slate-950">
+              <Link key={link.label} to={link.href} className="transition-colors hover:text-slate-950">
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -81,11 +101,44 @@ const Header = ({ onSearch }: HeaderProps) => {
         
         <div className="hidden items-center space-x-2 md:flex">
           <Button variant="outline" size="sm" className="border-purple-200 hover:bg-purple-50" asChild>
-            <a href="#trust">Trust & Safety</a>
+            <Link to="/cart">
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Cart{itemCount > 0 ? ` (${itemCount})` : ""}
+            </Link>
           </Button>
-          <Button className="bg-purple-500 text-white hover:bg-purple-600" size="sm" asChild>
-            <a href="#list-your-rental">List Your Rental</a>
-          </Button>
+          {isAdmin ? (
+            <Button variant="outline" size="sm" className="border-purple-200 hover:bg-purple-50" asChild>
+              <Link to="/admin">
+                <ShieldCheck className="mr-2 h-4 w-4" />
+                Admin
+              </Link>
+            </Button>
+          ) : (
+            <Button variant="outline" size="sm" className="border-purple-200 hover:bg-purple-50" asChild>
+              <Link to="/admin/login">
+                <BadgeCheck className="mr-2 h-4 w-4" />
+                Admin login
+              </Link>
+            </Button>
+          )}
+          {user ? (
+            <>
+              <Button variant="outline" size="sm" className="border-purple-200 hover:bg-purple-50">
+                <UserRound className="mr-2 h-4 w-4" />
+                {user.email?.split("@")[0] ?? "Account"}
+              </Button>
+              <Button className="bg-purple-500 text-white hover:bg-purple-600" size="sm" onClick={() => void handleSignOut()}>
+                Sign out
+              </Button>
+            </>
+          ) : (
+            <Button className="bg-purple-500 text-white hover:bg-purple-600" size="sm" asChild>
+              <Link to="/login">
+                <LogIn className="mr-2 h-4 w-4" />
+                Sign in
+              </Link>
+            </Button>
+          )}
         </div>
 
         <div className="md:hidden">
@@ -100,21 +153,39 @@ const Header = ({ onSearch }: HeaderProps) => {
               <nav className="mt-8 flex flex-col space-y-4">
                 {navLinks.map((link) => (
                   <SheetClose asChild key={link.label}>
-                    <a href={link.href} className="text-lg font-medium text-slate-700">
+                    <Link to={link.href} className="text-lg font-medium text-slate-700">
                       {link.label}
-                    </a>
+                    </Link>
                   </SheetClose>
                 ))}
                 <SheetClose asChild>
-                  <Button className="w-full justify-start bg-purple-500 text-white hover:bg-purple-600" asChild>
-                    <a href="#list-your-rental">
-                      List Your Rental
-                    </a>
+                  <Button variant="outline" className="w-full justify-start border-purple-200 hover:bg-purple-50" asChild>
+                    <Link to="/cart">
+                      <ShoppingCart className="mr-2 h-4 w-4" />
+                      Cart{itemCount > 0 ? ` (${itemCount})` : ""}
+                    </Link>
                   </Button>
                 </SheetClose>
                 <SheetClose asChild>
+                  {user ? (
+                    <Button className="w-full justify-start bg-purple-500 text-white hover:bg-purple-600" onClick={() => void handleSignOut()}>
+                      Sign out
+                    </Button>
+                  ) : (
+                    <Button className="w-full justify-start bg-purple-500 text-white hover:bg-purple-600" asChild>
+                      <Link to="/login">
+                        <LogIn className="mr-2 h-4 w-4" />
+                        Sign in
+                      </Link>
+                    </Button>
+                  )}
+                </SheetClose>
+                <SheetClose asChild>
                   <Button variant="outline" className="w-full justify-start border-purple-200 hover:bg-purple-50" asChild>
-                    <a href="#trust">Trust & Safety</a>
+                    <Link to={isAdmin ? "/admin" : "/admin/login"}>
+                      <ShieldCheck className="mr-2 h-4 w-4" />
+                      {isAdmin ? "Admin dashboard" : "Admin login"}
+                    </Link>
                   </Button>
                 </SheetClose>
               </nav>

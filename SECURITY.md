@@ -22,6 +22,7 @@ Include:
 
 - Supabase usage is limited to the public anon key on the client
 - Environment variables can override the built-in public Supabase values for deployment
+- Admin routes are protected behind authentication and admin-email verification
 - Search input is sanitized before being interpolated into Supabase filter syntax
 - The storefront now falls back gracefully when live inventory is unavailable, reducing error-driven broken states
 

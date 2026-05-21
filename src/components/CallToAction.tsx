@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const CallToAction = () => {
   return (
@@ -20,10 +21,10 @@ const CallToAction = () => {
               className="bg-white text-fashion hover:bg-white/90 hover:text-fashion px-8 py-6 h-auto text-lg"
               asChild
             >
-              <a href="mailto:hello@rentiverse.com?subject=List%20on%20Rentiverse">
+              <Link to="/login">
                 <Plus className="mr-2" />
                 List Your Rental
-              </a>
+              </Link>
             </Button>
             
             <Button 
@@ -31,10 +32,10 @@ const CallToAction = () => {
               className="border-2 border-white text-white hover:bg-white/20 px-8 py-6 h-auto text-lg"
               asChild
             >
-              <a href="#faq">
-                Learn More
+              <Link to="/admin/login">
+                Admin Panel
                 <ArrowRight className="ml-2" />
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

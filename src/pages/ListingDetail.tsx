@@ -9,6 +9,8 @@ import { AlertTriangle, ArrowLeft, Calendar, MapPin, Loader2, ShieldCheck, Truck
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { fallbackListings, MarketplaceListing, placeholderListingImage } from "@/data/marketplace";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface ListingDetailData extends MarketplaceListing {
   createdAt: string;
@@ -56,6 +58,8 @@ const fetchListing = async (id: string): Promise<ListingDetailData | null> => {
 const ListingDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { addItem } = useCart();
+  const { toast } = useToast();
 
   const handleSearch = (term: string) => {
     navigate(`/?q=${encodeURIComponent(term.toLowerCase())}`);
@@ -98,6 +102,22 @@ const ListingDetail = () => {
       </div>
     );
   }
+
+  const handleAddToCart = () => {
+    addItem({
+      listingId: listing.id,
+      title: listing.title,
+      category: listing.category,
+      imageUrl: listing.imageUrl,
+      location: listing.location,
+      pricePerDay: listing.pricePerDay,
+    });
+
+    toast({
+      title: "Added to cart",
+      description: `${listing.title} is ready for checkout.`,
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -152,12 +172,16 @@ const ListingDetail = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <Button size="lg" className="w-full" asChild>
-                    <a href={`mailto:hello@rentiverse.com?subject=Inquiry%20about%20${encodeURIComponent(listing.title)}`}>
-                      Contact Owner
-                    </a>
+                  <Button size="lg" className="w-full" onClick={handleAddToCart}>
+                    Add to cart
                   </Button>
-                  <Button variant="outline" size="lg" className="w-full" onClick={() => navigate("/")}>
+                  <Button variant="outline" size="lg" className="w-full" onClick={() => {
+                    handleAddToCart();
+                    navigate("/checkout");
+                  }}>
+                    Book with Stripe
+                  </Button>
+                  <Button variant="ghost" size="lg" className="w-full" onClick={() => navigate("/")}>
                     Browse More Rentals
                   </Button>
                 </div>
