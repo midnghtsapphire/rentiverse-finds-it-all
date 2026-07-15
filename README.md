@@ -1,5 +1,9 @@
 # Rentiverse Finds It All
 
+
+<!-- AUTO-PACKAGE-BADGES:START -->
+
+<!-- AUTO-PACKAGE-BADGES:END -->
 Rentiverse is a launch-ready storefront for a local rental marketplace: tools, event gear, outdoor equipment, creator kits, home-hosting inventory, and special-occasion style rentals in one place.
 
 This repository now ships a complete branded website instead of a default Lovable scaffold. It also includes curated fallback listings so the experience still works when the live Supabase catalog is empty or unavailable.
